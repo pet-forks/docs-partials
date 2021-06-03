@@ -150,10 +150,10 @@ To bootstrap in this scenario:
     Where `PATH-TO-DEPLOYMENT-MANIFEST` is the path to your deployment manifest.
 %>
 
-1. Run the bootstrap errand by running:
+1. Run the bootstrap errand on one of the failing instances by running:
 
     ```
-    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT run-errand bootstrap
+    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT --instance=INSTANCE-NAME run-errand bootstrap
     ```
 
     Where:
