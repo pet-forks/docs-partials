@@ -153,12 +153,13 @@ To bootstrap in this scenario:
 1. Run the bootstrap errand on one of the failing instances by running:
 
     ```
-    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT --instance=INSTANCE-NAME run-errand bootstrap
+    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT --instance=SERVICE-INSTANCE run-errand bootstrap
     ```
 
     Where:
     + `YOUR-ENV` is the name of your environment.
     + `YOUR-DEPLOYMENT` is the name of your deployment.
+    + `SERVICE-INSTANCE` is the name of a failing instance.
 
     <p class="note"><strong>Note:</strong> The errand runs for a long time, during which no output is returned.</p>
 
