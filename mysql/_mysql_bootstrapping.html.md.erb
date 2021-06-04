@@ -153,16 +153,13 @@ To bootstrap in this scenario:
 1. Run the bootstrap errand on the VM where the bootstrap errand is co-located, by running:
 
     ```
-<% if vars.product_full.include?("MySQL") %>
-bosh -e YOUR-ENV -d YOUR-DEPLOYMENT --instance=control/0 run-errand bootstrap
-<% else %>
-bosh -e YOUR-ENV -d YOUR-DEPLOYMENT --instance=clock_global/0 run-errand bootstrap
-<% end %>
+    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT --instance=VM run-errand bootstrap
     ```
 
     Where:
     + `YOUR-ENV` is the name of your environment.
     + `YOUR-DEPLOYMENT` is the name of your deployment.
+    + `VM` is `clock_global/0` for TAS or `control/0` for SRT.
 
     <p class="note"><strong>Note:</strong> The errand runs for a long time, during which no output is returned.</p>
 
