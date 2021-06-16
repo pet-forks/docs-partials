@@ -1,0 +1,10 @@
+Rolling app deployments do not properly timeout when the startup 
+timeout is reached. You may experience a rolling app deployment process 
+that hangs forever.
+
+If you experience a hanging rolling app deployment, you can 
+manually terminate the process with <code>^C</code>. The process by default 
+is supposed to timeout after 15 minutes.
+
+For more information about rolling deployments, see 
+<a href="https://docs.pivotal.io/application-service/devguide/deploy-apps/rolling-deploy.html">Rolling App Deployments</a>
