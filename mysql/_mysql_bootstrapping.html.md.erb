@@ -17,7 +17,7 @@ To check whether your cluster has lost quorum, look for the following symptoms:
 
 - All nodes appear "Unhealthy" on the proxy dashboard. <% if vars.product_full.include?("MySQL") %>
 The proxy dashboard is viewable at <%= vars.switchboard_url %>.
-<% else %> To log in to the proxy dashboard, see 
+<% else %> To log in to the proxy dashboard, see
 [Log In to Proxy Dashboard](#proxy-dashboard-login) below.<% end %>
 ![Screenshot of the Switchboard dashboard.
 At the top, there is a banner with the message '3 out of 3 nodes are unhealthy'.
@@ -54,15 +54,15 @@ For more information about checking the state of your cluster, see
 
 To log in to the proxy dashboard:
 
-1. Get the proxy dashboard credentials by entering the following URL into your web browser 
+1. Get the proxy dashboard credentials by entering the following URL into your web browser
 and recording the output:<pre>
     http<span>s</span>://OPS-MAN-FQDN/api/v0/deployed/products/<%= vars.app_runtime_abbr.parameterize.upcase %>-GUID/variables?name=mysql-proxy-dashboard-credentials
 </pre>
     Where:
-    - `OPS-MAN-FQDN` is the fully-qualified domain name (FQDN) for your <%= vars.ops_manager %> 
+    - `OPS-MAN-FQDN` is the fully-qualified domain name (FQDN) for your <%= vars.ops_manager %>
     deployment.
-    - `<%= vars.app_runtime_abbr.parameterize.upcase %>-GUID` is the GUID of your 
-    <%= vars.app_runtime_abbr %> tile. For more information about finding your GUID, 
+    - `<%= vars.app_runtime_abbr.parameterize.upcase %>-GUID` is the GUID of your
+    <%= vars.app_runtime_abbr %> tile. For more information about finding your GUID,
     see the [Ops Manager API documentation](https://docs.pivotal.io/platform/opsman-api/#tag/Products/paths/~1api~1v0~1deployed~1products/get)
 
 1. Log in to the proxy dashboard by entering the following URL into your web browser: <pre>
@@ -154,7 +154,7 @@ To bootstrap in this scenario:
 
 <% if vars.product_full.include?("MySQL") %>
     ```
-    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT --instance=mysql/0 run-errand bootstrap
+    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT run-errand --instance=mysql/0 bootstrap
     ```
 
     Where:
@@ -162,7 +162,7 @@ To bootstrap in this scenario:
     + `YOUR-DEPLOYMENT` is the name of your deployment.
 <% else %>
     ```
-    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT --instance=VM run-errand bootstrap
+    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT run-errand --instance=VM bootstrap
     ```
 
     Where:
@@ -292,7 +292,7 @@ To re-create your missing VMs:
     + `YOUR-DEPLOYMENT` is the name of your deployment.
     + `INSTANCE-GUID` is the GUID of your instance you recorded in the above step.
 
-1. Repeat steps 4 through 6 until all instances have attempted to start.
+1. Repeat steps 4 and 5 until all instances have attempted to start.
 
 1. If you disabled the BOSH Resurrector in step 2, re-enable it by running:
 
@@ -322,13 +322,25 @@ To bootstrap:
 
 1. Run the bootstrap errand by running:
 
+<% if vars.product_full.include?("MySQL") %>
     ```
-    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT run-errand bootstrap
+    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT run-errand --instance=mysql/0 bootstrap
     ```
 
     Where:
     + `YOUR-ENV` is the name of your environment.
     + `YOUR-DEPLOYMENT` is the name of your deployment.
+<% else %>
+    ```
+    bosh -e YOUR-ENV -d YOUR-DEPLOYMENT run-errand --instance=VM bootstrap
+    ```
+
+    Where:
+    + `YOUR-ENV` is the name of your environment.
+    + `YOUR-DEPLOYMENT` is the name of your deployment.
+    + `VM` is `clock_global/0` if you use TAS for VMs and
+      `control/0` if you use Small Footprint TAS for VMs.
+<% end %>
 
     <p class="note"><strong>Note:</strong> The errand runs for a long time,
       during which no output is returned.</p>
