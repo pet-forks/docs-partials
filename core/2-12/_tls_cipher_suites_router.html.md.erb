@@ -8,4 +8,4 @@ Operators should verify that the ciphers are supported by any clients or front e
 <br/>
 <br/>
 Verify that every client participating in TLS handshakes with the Gorouter has at least one cipher suite in common with the Gorouter.
-  <p class="note"><strong>Note:</strong> Specify cipher suites that are supported by the versions configured in the <strong>Minimum version of TLS supported by the Gorouter and HAProxy</strong> field.</p>
+  <p class="note"><strong>Note:</strong> Specify cipher suites that are supported by the versions configured under <strong>Select the range of TLS versions supported by the Gorouter and HAProxy</strong>. For example, TLS v1.3 does not support configuring cipher suites. If you select <strong>TLSv1.3 only</strong>, you cannot configure cipher suites for the Gorouter or HAProxy.</p>
