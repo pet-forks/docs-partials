@@ -119,6 +119,10 @@ To configure the **System Logging** pane:
         <td>Disabled by default. Configures Log Cache to ingest app logs and app metrics through the syslog server instead of the Reverse Log Proxy. If you disable the V1 Firehose, you must enable Log Cache syslog ingestion in order to receive service tile metrics.</td>
       </tr>
       <tr>
+        <td><strong>Default loggregator drain metadata</strong><td>
+        <td>Enabled by default. When enabled, <%= vars.app_runtime_abbr %> sends all metadata in app and aggregate syslog drains. Disabling this option can reduce logging to external databases by up to 50 percent.</td>
+      </tr>
+      <tr>
         <td><strong>Disable logs in Firehose</strong></td>
         <td>Deselected by default. Prevents the Firehose from emitting app logs but still allows the Firehose to emit app metrics. Disabling logs in Firehose helps reduce the load on <%= vars.app_runtime_abbr %> by allowing you to scale down Doppler and Traffic Controller VMs.</td>
       </tr>
