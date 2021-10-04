@@ -1,0 +1,9 @@
+HAProxy is not configured to support HTTP/2 ingress traffic
+nor does it send HTTP/2 traffic to Gorouter,
+even when HTTP/2 is enabled.
+
+Environments wishing to support HTTP/2 traffic
+can use an external load balancer as described in
+[Supporting HTTP/2](../adminguide/supporting-http2.html#load-balancer).
+
+This issue should be resolved in a future patch version.
